@@ -1,0 +1,66 @@
+﻿<Window x:Class="task3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:task3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="750" Width="800"
+        Icon="{StaticResource logo_full}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130"/>
+            <RowDefinition/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <ListView Grid.Row="1" Name="lvTours">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Margin="0,0,20,0" Width="120" Height="120" Source="{Binding ImagePreview, TargetNullValue={StaticResource picture}}"></Image>
+                            <Grid>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                    <TextBlock FontSize="16" Text="{Binding getPrice}"></TextBlock>
+                                    <Grid>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="0,0,20,20" Foreground="{Binding color}"  Text="{Binding Actual}"></TextBlock>
+                                            <TextBlock Text="{Binding tickets}"></TextBlock>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center">
+            <Grid Margin="0,20" HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Введите текст для поиска"></TextBlock>
+                <TextBox x:Name="tbSearch" Margin="20,0,0,0" Width="180" TextChanged="tbSearch_TextChanged"></TextBox>
+                </StackPanel>
+            </Grid>
+            <Grid HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Выберите тип"></TextBlock>
+                    <ComboBox SelectedItem="{Binding Types}" DisplayMemberPath="Name" Name="cbTypes" Margin="20,0,0,0" Width="180" SelectionChanged="cbTypes_SelectionChanged"></ComboBox>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,10,0,0" HorizontalAlignment="Right">
+                <CheckBox Name="cbOnlyActual" Content="только актуальные туры" Unchecked="cbOnlyActual_Checked" Checked="cbOnlyActual_Checked"></CheckBox>
+            </Grid>
+        </StackPanel>
+
+
+
+        <Grid Grid.Row="2">
+            <TextBlock></TextBlock>
+        </Grid>
+        
+    </Grid>
+</Window>
